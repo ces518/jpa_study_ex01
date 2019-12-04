@@ -69,6 +69,25 @@ public class JpaMain {
                 System.out.println(findMember.getName());
             }
 
+
+
+            // 비영속 상태
+            Member newMember = new Member();
+            newMember.setId(100L);
+            newMember.setName("HelloJPA");
+
+            // 영속 상태
+            // 영속성 컨텍스트를 통해 newMember 객체가 관리하는 상태
+            // 이 시점에 저장 되지 않는다.
+            entityManager.persist(newMember);
+
+
+            // 회원 엔티티를 영속성 컨텍스트에서 분리, 준영속 상태
+            entityManager.detach(member);
+
+            // 객체를 삭제한 상태 (삭제)
+            entityManager.remove(member);
+
             // 트랜잭션 종료
             tx.commit();
         } catch (Exception e) {
