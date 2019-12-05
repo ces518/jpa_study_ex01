@@ -88,6 +88,13 @@ public class JpaMain {
             // 객체를 삭제한 상태 (삭제)
             entityManager.remove(member);
 
+
+            // 1차 캐시에서 조회
+            Member findMember = entityManager.find(Member.class, 100L);
+            findMember.setName("HELLOJPA2");
+            // 커밋하는 시점에 변경 감지로 인해 업데이트가 된다.
+
+
             // 트랜잭션 종료
             tx.commit();
         } catch (Exception e) {
