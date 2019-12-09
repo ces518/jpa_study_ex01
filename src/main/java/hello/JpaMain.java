@@ -95,6 +95,14 @@ public class JpaMain {
             // 커밋하는 시점에 변경 감지로 인해 업데이트가 된다.
 
 
+            Member newMember2 = new Member();
+            newMember2.setId(200L);
+            newMember2.setName("HELLO 200 Member");
+            entityManager.persist(newMember2); // 영속성 컨텍스트에 저장소에 쿼리를 저장
+            entityManager.flush(); // 저장소의 쿼리를 DB에 강제로 반영
+            // flush 를 하더라도 1차캐시는 유지된다.
+
+
             // 트랜잭션 종료
             tx.commit();
         } catch (Exception e) {
