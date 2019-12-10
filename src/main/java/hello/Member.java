@@ -13,14 +13,14 @@ import javax.persistence.Table;
  **/
 @Entity
 // USER 라는 테이블에 매핑을 해준다.
-// @Table(name = "USER")
+@Table(name = "USER")
 public class Member {
 
     @Id
     private Long id;
 
     // username 이라는 컬럼과 매핑해준다.
-    // @Column(name = "username")
+    @Column(name = "username", unique = true, length = 10)
     private String name;
 
     public Long getId() {
