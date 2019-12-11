@@ -12,11 +12,23 @@ import java.util.Date;
  * Time: 5:18 오후
  **/
 @Entity
+/*
+@SequenceGenerator(
+    name = "MEMBER_SEQ_GENERATOR",
+    sequenceName = "MEMBER_SEQ",
+    initialValue = 1, allocationSize = 1)
+ */
+@TableGenerator(
+        name = "MEMBER_SEQ_GENERATOR",
+        table = "MY_SEQUENCES",
+        pkColumnValue = "MEMBER_SEQ",
+        allocationSize = 1)
 // USER 라는 테이블에 매핑을 해준다.
 @Table(name = "USER")
 public class Member {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     // DB에는 name으로 사용한다.
