@@ -44,7 +44,7 @@ public class JpaMain {
 
             // 조회하기
             Member member = entityManager.find(Member.class, 1L);
-            System.out.println(member.getId() + " " + member.getName());
+//            System.out.println(member.getId() + " " + member.getName());
 
             // 삭제하기
             /*
@@ -53,7 +53,7 @@ public class JpaMain {
 
             // 수정하기
             // update 쿼리가 자동적으로 날아간다
-            member.setName("HELLO UPDATE");
+//            member.setName("HELLO UPDATE");
 
 
             // JPQL 을 사용하여 쿼리를 생성해 사용할 수 있다.
@@ -66,15 +66,15 @@ public class JpaMain {
                     .getResultList();
 
             for (Member findMember : findMembers) {
-                System.out.println(findMember.getName());
+//                System.out.println(findMember.getName());
             }
 
 
 
             // 비영속 상태
             Member newMember = new Member();
-            newMember.setId(100L);
-            newMember.setName("HelloJPA");
+//            newMember.setId(100L);
+//            newMember.setName("HelloJPA");
 
             // 영속 상태
             // 영속성 컨텍스트를 통해 newMember 객체가 관리하는 상태
@@ -91,13 +91,13 @@ public class JpaMain {
 
             // 1차 캐시에서 조회
             Member findMember = entityManager.find(Member.class, 100L);
-            findMember.setName("HELLOJPA2");
+//            findMember.setName("HELLOJPA2");
             // 커밋하는 시점에 변경 감지로 인해 업데이트가 된다.
 
 
             Member newMember2 = new Member();
-            newMember2.setId(200L);
-            newMember2.setName("HELLO 200 Member");
+//            newMember2.setId(200L);
+//            newMember2.setName("HELLO 200 Member");
             entityManager.persist(newMember2); // 영속성 컨텍스트에 저장소에 쿼리를 저장
             entityManager.flush(); // 저장소의 쿼리를 DB에 강제로 반영
             // flush 를 하더라도 1차캐시는 유지된다.
@@ -106,7 +106,7 @@ public class JpaMain {
             // 영속 상태
             Member findMember2 = entityManager.find(Member.class, 100L);
             // 더티 체킹으로 update 쿼리를 날려줌
-            findMember2.setName("HELLOJPA2");
+//            findMember2.setName("HELLOJPA2");
             // 준영속 상태
             // 영속성 컨텍스트에서 더이상 관리하지 않는다.
             // 트랜잭션이 커밋되더라도 아무일도 일어나지 않는다.

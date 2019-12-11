@@ -1,9 +1,9 @@
 package hello;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,23 +19,28 @@ public class Member {
     @Id
     private Long id;
 
-    // username 이라는 컬럼과 매핑해준다.
-    @Column(name = "username", unique = true, length = 10)
+    // DB에는 name으로 사용한다.
+    @Column(name = "name")
     private String name;
 
-    public Long getId() {
-        return id;
-    }
+    private Integer age;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Enumerated(EnumType.STRING)
+    private RoleType roleType;
 
-    public String getName() {
-        return name;
-    }
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdDate;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastModifedDate;
+
+    @Lob
+    private String description;
+
+    @Transient
+    private int temp;
+
+    private LocalDate localDate;
+
+    private LocalDateTime localDateTime;
 }
