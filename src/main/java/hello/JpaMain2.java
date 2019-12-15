@@ -30,16 +30,28 @@ public class JpaMain2 {
             // 영속 상태가 되면 무조건 ID값이 생성됨
             // 하지만 객체지향 스러운 코드가 아니다.
             // 외래키 식별자를 직접 다룬다..
-            member.setTeamId(team.getId());
+//            member.setTeamId(team.getId());
+            /**
+             * 연관관계 매핑후
+             * teamId가 아닌 team의 참조를 연결한다.
+             * */
+            member.setTeam(team);
+
             em.persist(member);
 
 
             // 조회시에도 이슈가 있음
             Member findMember = em.find(Member.class, member.getId());
             // 소속된 팀을 알고싶을떄 ??
-            Long teamId = findMember.getTeamId();
+//            Long teamId = findMember.getTeamId();
             // teamId를 기반으로 조회해야함
-            Team findTeam = em.find(Team.class, teamId);
+//            Team findTeam = em.find(Team.class, teamId);
+            /**
+             * 연관관계 매핑후
+             * 바로 꺼내어 사용할 수 있다.
+             */
+            Team findMemberTeam = findMember.getTeam();
+            System.out.println("team = " + findMemberTeam.getName());
 
             tx.commit();
         } catch (Exception e) {
