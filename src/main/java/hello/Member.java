@@ -1,58 +1,50 @@
 package hello;
 
-import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  * Created by IntelliJ IDEA.
  * User: june
- * Date: 28/11/2019
- * Time: 5:18 오후
+ * Date: 12/12/2019
+ * Time: 10:20 오후
  **/
 @Entity
-/*
-@SequenceGenerator(
-    name = "MEMBER_SEQ_GENERATOR",
-    sequenceName = "MEMBER_SEQ",
-    initialValue = 1, allocationSize = 1)
- */
-@TableGenerator(
-        name = "MEMBER_SEQ_GENERATOR",
-        table = "MY_SEQUENCES",
-        pkColumnValue = "MEMBER_SEQ",
-        allocationSize = 1)
-// USER 라는 테이블에 매핑을 해준다.
-@Table(name = "USER")
 public class Member {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue
+    @Column(name = "MEMBER_ID")
     private Long id;
 
-    // DB에는 name으로 사용한다.
-    @Column(name = "name")
-    private String name;
+    @Column(name = "USERNAME")
+    private String username;
 
-    private Integer age;
+    @Column(name = "TEAM_ID")
+    private Long teamId;
 
-    @Enumerated(EnumType.STRING)
-    private RoleType roleType;
+    public Long getId() {
+        return id;
+    }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastModifedDate;
+    public String getUsername() {
+        return username;
+    }
 
-    @Lob
-    private String description;
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-    @Transient
-    private int temp;
+    public Long getTeamId() {
+        return teamId;
+    }
 
-    private LocalDate localDate;
-
-    private LocalDateTime localDateTime;
+    public void setTeamId(Long teamId) {
+        this.teamId = teamId;
+    }
 }
