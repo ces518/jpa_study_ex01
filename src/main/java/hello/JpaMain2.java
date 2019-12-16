@@ -51,7 +51,8 @@ public class JpaMain2 {
              * 바로 꺼내어 사용할 수 있다.
              */
             Team findMemberTeam = findMember.getTeam();
-            System.out.println("team = " + findMemberTeam.getName());
+            List<Member> members = findMemberTeam.getMembers();
+            members.forEach(member1 -> System.out.println(member1.getUsername()));
 
             tx.commit();
         } catch (Exception e) {

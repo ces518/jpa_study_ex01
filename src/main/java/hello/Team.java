@@ -1,9 +1,8 @@
 package hello;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -20,6 +19,12 @@ public class Team {
 
     private String name;
 
+    /**
+     * mappedBy: 일대다에서 Member의 team과 연관관계로 매핑이 되어있다.
+     */
+    @OneToMany(mappedBy = "team")
+    private List<Member> members = new ArrayList<>(); // new ArrayList<>(); 로 초기화해 add 시 nullpointer가 나지않도록 하는것이 관례이다
+
     public Long getId() {
         return id;
     }
@@ -34,5 +39,13 @@ public class Team {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Member> getMembers() {
+        return members;
+    }
+
+    public void setMembers(List<Member> members) {
+        this.members = members;
     }
 }
