@@ -22,9 +22,9 @@ public class Team {
     /**
      * mappedBy: 일대다에서 Member의 team과 연관관계로 매핑이 되어있다.
      */
-//    @OneToMany(mappedBy = "team")
-            @OneToMany
-    @JoinColumn(name = "TEAM_ID")
+    @OneToMany(mappedBy = "team")
+//            @OneToMany
+//    @JoinColumn(name = "TEAM_ID")
     private List<Member> members = new ArrayList<>(); // new ArrayList<>(); 로 초기화해 add 시 nullpointer가 나지않도록 하는것이 관례이다
 
     public Long getId() {
@@ -51,8 +51,8 @@ public class Team {
         this.members = members;
     }
 
-//    public void addMember (Member member) {
-//        member.setTeam(this);
-//        this.members.add(member);
-//    }
+    public void addMember (Member member) {
+        member.setTeam(this);
+        this.members.add(member);
+    }
 }
