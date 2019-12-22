@@ -22,7 +22,8 @@ public class Member {
 //    private Long teamId;
     // 멤버의 입장에서 Many , Team의 입장에서 one 이기 때문에 ManyToOne
     @ManyToOne
-    @JoinColumn(name = "TEAM_ID")
+//    @JoinColumn(name = "TEAM_ID")
+    @JoinColumn(name = "TEAM_ID", insertable = false, updatable = false)
     private Team team;
 
     public Long getId() {
@@ -41,20 +42,20 @@ public class Member {
         this.username = username;
     }
 
-    public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
-    }
-
-    /**
-     * 연관관계 편의 메소드
-     * @param team
-     */
-    public void changeTeam(Team team) {
-        this.team = team;
-        team.getMembers().add(this);
-    }
+//    public Team getTeam() {
+//        return team;
+//    }
+//
+//    public void setTeam(Team team) {
+//        this.team = team;
+//    }
+//
+//    /**
+//     * 연관관계 편의 메소드
+//     * @param team
+//     */
+//    public void changeTeam(Team team) {
+//        this.team = team;
+//        team.getMembers().add(this);
+//    }
 }
