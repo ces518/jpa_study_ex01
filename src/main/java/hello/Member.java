@@ -23,7 +23,7 @@ public class Member {
 //    @Column(name = "TEAM_ID")
 //    private Long teamId;
     // 멤버의 입장에서 Many , Team의 입장에서 one 이기 때문에 ManyToOne
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TEAM_ID")
 //    @JoinColumn(name = "TEAM_ID", insertable = false, updatable = false)
     private Team team;
