@@ -17,7 +17,7 @@ public class Parent {
 
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Child> children = new ArrayList<>();
 
     public void addChild (Child child) {

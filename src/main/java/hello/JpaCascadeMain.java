@@ -37,6 +37,13 @@ public class JpaCascadeMain {
 
             em.persist(parent);
 
+            em.flush();
+            em.clear();
+
+            // 고아 객체가 orphanRemoval 옵션으로 인해 DELETE 쿼리가 나간다.
+            Parent findParent = em.find(Parent.class, parent.getId());
+            findParent.getChildren().remove(0);
+
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
